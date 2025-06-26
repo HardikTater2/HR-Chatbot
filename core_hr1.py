@@ -202,7 +202,7 @@ policy_store = DocumentStore()
 
 def get_policy_paths() -> Dict[str, str]:
     """Get policy document paths from environment or use defaults"""
-    base_path = os.getenv("HR_DOCS_PATH", r"C:\Users\AMISH\Desktop\hr_docs")
+    base_path = os.getenv("HR_DOCS_PATH", os.path.join(os.getcwd(), "hr_docs"))
     
     return {
         "attendance": os.path.join(base_path, "Attendance Policy.pdf"),
@@ -214,6 +214,7 @@ def get_policy_paths() -> Dict[str, str]:
         "relocation": os.path.join(base_path, "RELOCATION POLICY.pdf"),
         "return_office": os.path.join(base_path, "Return to Office (RTO) 2.pdf")
     }
+
 
 def extract_text_from_pdf(file_path: str) -> str:
     """Extract text from PDF with enhanced error handling"""
